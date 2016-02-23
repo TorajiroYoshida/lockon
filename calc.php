@@ -23,7 +23,7 @@ if (!is_null($num1) && !is_null($num2)) {
                 $answer = $num1 + $num2;
                 break;
             default:
-                $answer = '計算記号が ' + $operator + ' になってます';
+                $answer = '計算記号が ' . $operator . ' になってます';
         }
         $result = "{$num1} {$operator} {$num2} = {$answer}";
     } else {
@@ -37,6 +37,10 @@ if (!is_null($num1) && !is_null($num2)) {
     }
 } else {
     $result = '入力なし';
+}
+
+function e($str, $charset = 'UTF-8') {
+    print htmlspecialchars($str, ENT_QUOTES, $charset);
 }
 ?>
 
@@ -68,9 +72,9 @@ To change this template file, choose Tools | Templates
                     echo 'selected';
                 } ?>>/</option>
             </select>
-            <input type="text" name="num2" value="<?php echo $num2; ?>"/>
+            <input type="text" name="num2" value="<?php e($num2); ?>"/>
             <input type="submit" value="計算する">
         </form>
-        <p><?php echo $result; ?></p>
+        <p><?php e($result); ?></p>
     </body>
 </html>
