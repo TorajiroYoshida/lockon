@@ -1,8 +1,6 @@
 <?php
-define('DB_NAME', 'board_app');
-define('DB_USER', 'root');
-define('DB_PASS', 'root');
-define('PDO_DSN', 'mysql:dbhost=localhost;dbname=board_app;charset=utf8');
+require 'dataBase.php';
+require 'check.php';
 
 $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
 $contents = filter_input(INPUT_POST, 'contents', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -10,19 +8,6 @@ $contents = filter_input(INPUT_POST, 'contents', FILTER_SANITIZE_SPECIAL_CHARS);
 class Board {
     function show() {
         e("($this->name)$this->contents");
-        echo "<br><hr>";
-    }
-}
-
-function e($str, $charset = 'UTF-8') {
-    print htmlspecialchars($str, ENT_QUOTES, $charset);
-}
-
-function h($text) {
-    if(isset($text)) {
-        if($text == "") {
-            echo '入力してください';
-        }
     }
 }
 
@@ -43,12 +28,10 @@ try {
     
     $stmt = $db -> query("SELECT * FROM messages");
     $boards = $stmt -> fetchAll(PDO::FETCH_CLASS, 'Board');
-    foreach($boards as $board) {
-        $board -> show();
-    }
     
 } catch (PDOException $e) {
-    echo $e -> getMessage();
+    $error = "データベースでエラーが発生しています。";
+//    echo $e -> getMessage();
 }
 ?>
 
@@ -64,9 +47,15 @@ and open the template in the editor.
         <title>掲示板</title>
     </head>
     <body>
+        <?php
+            foreach($boards as $board) {
+                $board -> show();
+                echo "<br><hr>";
+            }
+        ?>
         <form action = "board.php" method = "POST">
-            名前： <input type = "text" name = "name"><?php h(filter_input(INPUT_POST, 'name')) ?><br/>
-            本文： <textarea name= "contents" cols="50" rows="3"></textarea><?php h(filter_input(INPUT_POST, 'contents')) ?><br>
+            名前： <input type = "text" name = "name"><?php checkInput($name) ?><br/>
+            本文： <textarea name= "contents" cols="50" rows="3"></textarea><?php checkInput($contents) ?><br>
             <br>
             <input type="submit" value="送信する">
         </form>
