@@ -30,7 +30,7 @@ try {
     $boards = $stmt -> fetchAll(PDO::FETCH_CLASS, 'Board');
     
 } catch (PDOException $e) {
-    $error = "データベースでエラーが発生しています。";
+    $error = "ただいまデータベースでエラーが発生しています。";
 //    echo $e -> getMessage();
 }
 ?>
@@ -54,10 +54,15 @@ and open the template in the editor.
             }
         ?>
         <form action = "board.php" method = "POST">
-            名前： <input type = "text" name = "name"><?php checkInput($name) ?><br/>
+            名前： <input type = "text" name = "name"><?php checkInput($name) ?><br>
             本文： <textarea name= "contents" cols="50" rows="3"></textarea><?php checkInput($contents) ?><br>
             <br>
             <input type="submit" value="送信する">
+            <?php
+                if(isset($error)) {
+                    print($error);
+                }
+            ?>
         </form>
     </body>
 </html>
