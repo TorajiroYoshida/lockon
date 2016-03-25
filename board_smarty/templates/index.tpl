@@ -7,14 +7,40 @@
          <link rel="stylesheet" href="comn/style.css">
     </head>
     <body>
-        {foreach $boards as $board}
-            {$board}
-            <br><hr>
-        {/foreach}
+    <input type="button" value="ログイン" onclick="location.href='login.php';">
+    <input type="button" value="ログアウト" onclick="location.href='logout.php';">
+    {if isset($userName)}
+        {if !$userName == ""}
+            {$userName}としてログイン中
+        {else}
+            ゲストです
+        {/if}
+    {else}
+        ゲストです
+    {/if}
+    <br><hr>
 
-        <form action = "index.php" method = "POST">
-            名前： <input type = "text" name = "name">{$name}<br>
-            本文： <textarea name= "contents" cols="50" rows="3"></textarea>{$contents}<br>
+        {if isset($boards)}
+            {foreach $boards as $board}
+                ({$board->name})<br>
+                {nl2br(htmlspecialchars($board->contents))}<br>
+                {if $userName == $board->name}
+                    <form action="index.php" method="POST">
+                        <input type="hidden" name="deleteNumber" value={$board->number}>
+                        <input type="submit" value="削除する">
+                    </form>
+                    <form action="edit.php" method="POST">
+                        <input type="hidden" name="edit" value={$board->contents}>
+                        <input type="submit" value="編集" onclick="location.href='edit.php'">
+                    </form>
+                {/if}
+                <hr>
+            {/foreach}
+        {/if}
+
+        <form action="index.php" method="POST">
+            名前： <input type="text" name="name" value={$userName}>{$name}<br>
+            本文： <textarea name="contents" cols="50" rows="3"></textarea>{$contents}<br>
             <br>
             <input type="submit" value="送信する">
         </form>
