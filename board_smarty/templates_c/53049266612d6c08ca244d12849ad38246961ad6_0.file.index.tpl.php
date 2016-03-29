@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-03-25 03:34:07
+/* Smarty version 3.1.29, created on 2016-03-27 11:13:03
   from "/Applications/MAMP/htdocs/board_smarty/templates/index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_56f4a39f4830a4_10896714',
+  'unifunc' => 'content_56f7a41f821693_30794776',
   'file_dependency' => 
   array (
     '53049266612d6c08ca244d12849ad38246961ad6' => 
     array (
       0 => '/Applications/MAMP/htdocs/board_smarty/templates/index.tpl',
-      1 => 1458873244,
+      1 => 1459069973,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_56f4a39f4830a4_10896714 ($_smarty_tpl) {
+function content_56f7a41f821693_30794776 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,13 +63,15 @@ $__foreach_board_0_saved_local_item = $_smarty_tpl->tpl_vars['board'];
 <br>
                 <?php if ($_smarty_tpl->tpl_vars['userName']->value == $_smarty_tpl->tpl_vars['board']->value->name) {?>
                     <form action="index.php" method="POST">
-                        <input type="hidden" name="deleteNumber" value=<?php echo $_smarty_tpl->tpl_vars['board']->value->number;?>
->
+                        <input type="hidden" name="deleteNumber" value="<?php echo $_smarty_tpl->tpl_vars['board']->value->number;?>
+">
                         <input type="submit" value="削除する">
                     </form>
                     <form action="edit.php" method="POST">
-                        <input type="hidden" name="edit" value=<?php echo $_smarty_tpl->tpl_vars['board']->value->contents;?>
->
+                        <input type="hidden" name="nowContents" value="<?php echo $_smarty_tpl->tpl_vars['board']->value->contents;?>
+">
+                        <input type="hidden" name="editNumber" value="<?php echo $_smarty_tpl->tpl_vars['board']->value->number;?>
+">
                         <input type="submit" value="編集" onclick="location.href='edit.php'">
                     </form>
                 <?php }?>
@@ -85,7 +87,8 @@ $_smarty_tpl->tpl_vars['board'] = $__foreach_board_0_saved_item;
 
         <form action="index.php" method="POST">
             名前： <input type="text" name="name" value=<?php echo $_smarty_tpl->tpl_vars['userName']->value;?>
-><?php echo $_smarty_tpl->tpl_vars['name']->value;?>
+><?php echo $_smarty_tpl->tpl_vars['name']->value;
+echo $_smarty_tpl->tpl_vars['userError']->value;?>
 <br>
             本文： <textarea name="contents" cols="50" rows="3"></textarea><?php echo $_smarty_tpl->tpl_vars['contents']->value;?>
 <br>

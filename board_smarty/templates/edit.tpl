@@ -7,10 +7,11 @@
         <link rel="stylesheet" href="comn/style.css">
     </head>
     <body>
-        編集ページ <input type="button" value="掲示板に戻る" onclick="location.href='index.php';"><br>
-        <form action = "login.php" method = "POST">
-            名前： <input type = "text" name = "userName" value={$userName}>{$checkName}<br>
-            本文： <textarea name="contents" cols="50" rows="3">{$nowContents}</textarea>{$checkContents}<br>
+        編集ページ <input type="button" value="掲示板に戻る" onclick="location.href='index.php';">{$editError}<br>
+        <form action = "edit.php" method = "POST">
+            <input type="hidden" name="editNumber" value="{$editNumber}">
+            名前： <input type="text" name="userName" value={$userName}>{$checkName}{$userError}<br>
+            本文： <textarea name="editContents" cols="50" rows="3">{$nowContents}</textarea>{$checkContents}<br>
             <br>
             <input type="submit" value="編集を完了する">
         </form>

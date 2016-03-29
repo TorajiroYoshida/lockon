@@ -26,11 +26,12 @@
                 {nl2br(htmlspecialchars($board->contents))}<br>
                 {if $userName == $board->name}
                     <form action="index.php" method="POST">
-                        <input type="hidden" name="deleteNumber" value={$board->number}>
+                        <input type="hidden" name="deleteNumber" value="{$board->number}">
                         <input type="submit" value="削除する">
                     </form>
                     <form action="edit.php" method="POST">
-                        <input type="hidden" name="edit" value={$board->contents}>
+                        <input type="hidden" name="nowContents" value="{$board->contents}">
+                        <input type="hidden" name="editNumber" value="{$board->number}">
                         <input type="submit" value="編集" onclick="location.href='edit.php'">
                     </form>
                 {/if}
@@ -39,7 +40,7 @@
         {/if}
 
         <form action="index.php" method="POST">
-            名前： <input type="text" name="name" value={$userName}>{$name}<br>
+            名前： <input type="text" name="name" value={$userName}>{$name}{$userError}<br>
             本文： <textarea name="contents" cols="50" rows="3"></textarea>{$contents}<br>
             <br>
             <input type="submit" value="送信する">

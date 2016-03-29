@@ -13,6 +13,7 @@ session_start();
 $name = filter_input(INPUT_POST, 'name');
 $contents = filter_input(INPUT_POST, 'contents');
 $deleteNumber = filter_input(INPUT_POST, 'deleteNumber');
+$userError = "";
 
 if(empty($_SESSION["userName"])) {
     $_SESSION["userName"] = "";
@@ -26,10 +27,16 @@ try {
     //insert
     if(isset($name) && isset($contents)) {
         if(!$name == "" && !$contents == "") {
-            $stmt = $db -> prepare("INSERT INTO messages(name, contents, submitUser) VALUES(:name, :contents, :submitUser)");
-            $stmt -> bindvalue(':name', $name, PDO::PARAM_STR);
-            $stmt -> bindvalue(':contents', $contents, PDO::PARAM_STR);
-            $stmt -> execute();
+            if(!$_SESSION["userName"] == "") {
+                if($name == $_SESSION["userName"]) {
+                    $stmt = $db->prepare("INSERT INTO messages(name, contents) VALUES(:name, :contents)");
+                    $stmt->bindvalue(':name', $name, PDO::PARAM_STR);
+                    $stmt->bindvalue(':contents', $contents, PDO::PARAM_STR);
+                    $stmt->execute();
+                } else {
+                    $userError = "ログインしている名前にしてください";
+                }
+            }
         }
     }
 
@@ -42,7 +49,6 @@ try {
                 $stmt -> execute();
         }
     }
-
 
     //get Data
     $stmt = $db -> query("SELECT * FROM messages");
@@ -58,6 +64,7 @@ $smarty -> assign('contents', checkInput($contents));
 $smarty -> assign('boards', $boards);
 $smarty -> assign('userName', $_SESSION["userName"]);
 $smarty -> assign('deleteNumber', $deleteNumber);
+$smarty -> assign('userError', $userError);
 $smarty -> display('index.tpl');
 
 ?>
