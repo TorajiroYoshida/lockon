@@ -10,6 +10,7 @@
         編集ページ <input type="button" value="掲示板に戻る" onclick="location.href='index.php';">{$editError}<br>
         <form action = "edit.php" method = "POST">
             <input type="hidden" name="editNumber" value="{$editNumber}">
+            <input type="hidden" name="nowContents" value="{$nowContents}">
             名前： <input type="text" name="userName" value={$userName}>{$checkName}{$userError}<br>
             本文： <textarea name="editContents" cols="50" rows="3">{$nowContents}</textarea>{$checkContents}<br>
             <br>

@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-03-29 10:56:42
+/* Smarty version 3.1.29, created on 2016-03-29 12:22:04
   from "/Applications/MAMP/htdocs/board_smarty/templates/edit.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_56fa434a086fb8_62408011',
+  'unifunc' => 'content_56fa574c3e2603_26393853',
   'file_dependency' => 
   array (
     '9d73832c2392b663832dc98edd7ba4091a4ad8f7' => 
     array (
       0 => '/Applications/MAMP/htdocs/board_smarty/templates/edit.tpl',
-      1 => 1459241791,
+      1 => 1459246917,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_56fa434a086fb8_62408011 ($_smarty_tpl) {
+function content_56fa574c3e2603_26393853 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,6 +34,8 @@ function content_56fa434a086fb8_62408011 ($_smarty_tpl) {
 <br>
         <form action = "edit.php" method = "POST">
             <input type="hidden" name="editNumber" value="<?php echo $_smarty_tpl->tpl_vars['editNumber']->value;?>
+">
+            <input type="hidden" name="nowContents" value="<?php echo $_smarty_tpl->tpl_vars['nowContents']->value;?>
 ">
             名前： <input type="text" name="userName" value=<?php echo $_smarty_tpl->tpl_vars['userName']->value;?>
 ><?php echo $_smarty_tpl->tpl_vars['checkName']->value;
