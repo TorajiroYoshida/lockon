@@ -8,6 +8,7 @@
     </head>
     <body>
     <input type="button" value="ログイン" onclick="location.href='login.php';">
+    <input type="button" value="会員登録" onclick="location.href='addAccount.php';">
     <input type="button" value="ログアウト" onclick="location.href='logout.php';">
     {if isset($userName)}
         {if !$userName == ""}

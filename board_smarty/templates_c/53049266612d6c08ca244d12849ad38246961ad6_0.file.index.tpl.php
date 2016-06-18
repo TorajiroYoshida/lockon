@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-03-27 11:13:03
+/* Smarty version 3.1.29, created on 2016-06-13 02:16:53
   from "/Applications/MAMP/htdocs/board_smarty/templates/index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_56f7a41f821693_30794776',
+  'unifunc' => 'content_575dfb75150d70_13597715',
   'file_dependency' => 
   array (
     '53049266612d6c08ca244d12849ad38246961ad6' => 
     array (
       0 => '/Applications/MAMP/htdocs/board_smarty/templates/index.tpl',
-      1 => 1459069973,
+      1 => 1460417090,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_56f7a41f821693_30794776 ($_smarty_tpl) {
+function content_575dfb75150d70_13597715 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,6 +31,7 @@ function content_56f7a41f821693_30794776 ($_smarty_tpl) {
     </head>
     <body>
     <input type="button" value="ログイン" onclick="location.href='login.php';">
+    <input type="button" value="会員登録" onclick="location.href='addAccount.php';">
     <input type="button" value="ログアウト" onclick="location.href='logout.php';">
     <?php if (isset($_smarty_tpl->tpl_vars['userName']->value)) {?>
         <?php if (!$_smarty_tpl->tpl_vars['userName']->value == '') {?>
